@@ -20,50 +20,50 @@ const Checkout = () => {
                 <Container>
                     <Row>
                         <Col lg="8">
-                            <h6 className='mb-4 fw-bold'>Billing Information</h6>
+                            <h6 className='mb-4 fw-bold'>Informasi Pesanan</h6>
                             <Form className='billing__form'>
                                 <FormGroup className="form__group">
-                                    <input type="text" placeholder='Enter your name' />
+                                    <input type="text" placeholder='Nama Pemesan' />
                                 </FormGroup>
 
                                 <FormGroup className="form__group">
-                                    <input type="number" placeholder='Phone number' />
+                                    <input type="number" placeholder='Nomor Telepon' />
                                 </FormGroup>
 
                                 <FormGroup className="form__group">
-                                    <input type="text" placeholder='Street address' />
+                                    <input type="text" placeholder='Alamat lengkap' />
                                 </FormGroup>
 
                                 <FormGroup className="form__group">
-                                    <input type="text" placeholder='City' />
+                                    <input type="text" placeholder='Kota/Kabupaten' />
                                 </FormGroup>
 
                                 <FormGroup className="form__group">
-                                    <input type="text" placeholder='Postal code' />
+                                    <input type="text" placeholder='Kode Pos' />
                                 </FormGroup>
 
                                 <FormGroup className="form__group">
-                                    <input type="text" placeholder='Country' />
+                                    <input type="text" placeholder='Negara' />
                                 </FormGroup>
                             </Form>
                         </Col>
 
                         <Col lg='4'>
                             <div className='checkout__cart'>
-                                <h6>Total Qty: <span>{totalQty} items</span></h6>
+                                <h6>Total Pesanan : <span>{totalQty} barang </span></h6>
                                 <h6>Subtotal: <span>Rp {totalAmount}</span></h6>
                                 <h6> 
                                     <span>
-                                        Shipping: <br />
-                                        free shipping
+                                        Ongkos Kirim : <br />
+                                        Gratis Ongkir
                                     </span>
                                     <span>Rp 0</span> 
                                 </h6>
 
                                 <h4>
-                                    Total Cost: <span>Rp {totalAmount}</span>
+                                    Total : <span>Rp {totalAmount}</span>
                                 </h4>
-                                <button className='buy__btn auth__btn w-100'>Place an order</button>
+                                <button className='buy__btn auth__btn w-100'>Buat Pesanan</button>
                             </div>
                         </Col>
                     </Row>

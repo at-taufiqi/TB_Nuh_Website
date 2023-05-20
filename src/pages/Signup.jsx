@@ -68,7 +68,7 @@ const Signup = () => {
 
       } catch (error) {
         setLoading(false)
-        toast.error("something went wrong")
+        toast.error("Terjadi kesalahan")
       }
 
     }
@@ -91,19 +91,19 @@ const Signup = () => {
                                     value={username} onChange={e=> setUsername(e.target.value)} />
                                 </FormGroup>
                                 <FormGroup className='form__group'>
-                                    <input type="email" placeholder='Enter your email'
+                                    <input type="email" placeholder='Masukkan Email'
                                     value={email} onChange={e=> setEmail(e.target.value)} />
                                 </FormGroup>
                                 <FormGroup className='form__group'>
-                                    <input type="password" placeholder='Enter your password'
+                                    <input type="password" placeholder='Masukkan Password'
                                     value={password} onChange={e=> setPassword(e.target.value)} />
                                 </FormGroup>
                                 <FormGroup className='form__group'>
                                     <input type="file" onChange={e=> setFile(e.target.files[0])} />
                                 </FormGroup>
 
-                                <button type="submit" className='buy__btn auth__btn'>Create an account</button>
-                                <p>Already have an account? <Link to='/login'>Login</Link></p>
+                                <button type="submit" className='buy__btn auth__btn'>Buat Akun</button>
+                                <p>Sudah punya Akun? <Link to='/login'>Login disini</Link></p>
                             </Form>
                         </Col>
                         }

@@ -3,6 +3,7 @@ import './footer.css'
 import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
+
 const Footer = () => {
     const year = new Date().getFullYear()
     return <footer className="footer">
@@ -63,15 +64,15 @@ const Footer = () => {
                         <h4 className="quick__links-title">Contact</h4>
                         <ListGroup className='footer__contact'>
                             <ListGroupItem className='ps-0 border-0 d-flex align-items-center gap-2'>
-                                <span><i class="ri-map-pin-line"></i></span>
+                            <a href="https://goo.gl/maps/5U9QFT7WtLvW3hmd6" target="_blank"> <span><i class="ri-map-pin-line"></i></span> </a>
                                 <p>Lembon Karangcengis, Bukateja, Kabupaten Purbalingga</p>
                             </ListGroupItem>
                             <ListGroupItem className='ps-0 border-0 d-flex align-items-center gap-2'>
-                            <span><i class="ri-phone-line"></i></span>
-                                <p>+62 812-345-6789</p>
+                            <a href="https://wa.me/628156743627" target="_blank"> <span><i class="ri-phone-line"></i></span>  </a>
+                                <p>+62 815-6743-627</p>
                             </ListGroupItem>
                             <ListGroupItem className='ps-0 border-0 d-flex align-items-center gap-2'>
-                            <span><i class="ri-mail-line"></i></span>
+                            <a href="https://shorturl.at/wBDOV" target="_blank"> <span><i class="ri-mail-line"></i></span> </a>
                                 <p>tokobangunan.nuh@gmail.com</p>
                             </ListGroupItem>
                         </ListGroup>

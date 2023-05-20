@@ -74,7 +74,7 @@ const Home = () => {
                 <Container>
                     <Row>
                         <Col lg='12' className='text-center'>
-                            <h2 className='section__title'>Trending Products</h2>
+                            <h2 className='section__title'>Trending Product</h2>
                         </Col>
                         <Productlist data={trendingProducts} />
                     </Row>
@@ -84,7 +84,7 @@ const Home = () => {
                 <Container>
                 <Row>
                         <Col lg='12' className='text-center'>
-                            <h2 className='section__title'>Best Seller</h2>
+                            <h2 className='section__title'>Produk Terlaris</h2>
                         </Col>
                         <Productlist data={bestSalesProducts} />
                     </Row>
@@ -97,13 +97,13 @@ const Home = () => {
                         <Col lg='6' md='12' className='count__down-col'>
 
                             <div className="clock__top-content">
-                                <h4 className='text-white fs-6 mb-2'>Limited Offers</h4>
-                                <h3 className='text-white fs-5 mb-3'>Quality Armchair</h3>
+                                <h4 className='text-white fs-6 mb-2'>Penawaran Terbatas</h4>
+                                <h3 className='text-white fs-5 mb-3'>Bahan Material dan Perkakas</h3>
                             </div>
                             <Clock />
 
                             <motion.button whileTap={{ scale: 1.2 }}
-                             className="buy__btn store__btn"><Link to="/shop">Visit Store</Link></motion.button>
+                             className="buy__btn store__btn"><Link to="/shop">Belanja Sekarang</Link></motion.button>
                         </Col>
                         <Col lg='6' md='12' className='text-end counter__img'>
                             <img src={counterImg} alt="" />
@@ -116,7 +116,7 @@ const Home = () => {
                 <Container>
                     <Row>
                     <Col lg='12' className='text-center mb-5'>
-                            <h2 className='section__title'>New Arrivals</h2>
+                            <h2 className='section__title'>Produk Terbaru</h2>
                         </Col>
                         <Productlist data={mobileProducts} />
                         <Productlist data={wirelessProducts}/>
@@ -128,7 +128,7 @@ const Home = () => {
             <Container>
                     <Row>
                     <Col lg='12' className='text-center mb-5'>
-                            <h2 className='section__title'>Popular in Category</h2>
+                            <h2 className='section__title'>Terlaris di Kategori</h2>
                         </Col>
                         <Productlist data={popularProducts} />
                     </Row>

@@ -59,7 +59,7 @@ const Login = () => {
                                     </FormGroup>
     
                                     <button type="submit" className='buy__btn auth__btn'>Login</button>
-                                    <p>Don't have an account? <Link to='/signup'>Create an account</Link></p>
+                                    <p>Belum Punya Akun? <Link to='/signup'>Daftar disini</Link></p>
                                 </Form>
                                 
                             </Col>
