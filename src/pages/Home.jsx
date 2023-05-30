@@ -14,36 +14,36 @@ import Clock from '../components/UI/Clock';
 
 const Home = () => {
 
-    const [trendingProducts, setTrendingProducts] = useState([])
-    const [bestSalesProducts, setBestSalesProducts] = useState([])
-    const [mobileProducts, setMobileProducts] = useState([])
-    const [wirelessProducts, setWirelessProducts] = useState([])
-    const [popularProducts, setPopularProducts] = useState([])
+    const [materialProducts, setMaterialProducts] = useState([])
+    const [elektronikProducts, setElektronikProducts] = useState([])
+    const [perabotProducts, setPerabotProducts] = useState([])
+    const [perkakasProducts, setPerkakasProducts] = useState([])
+    const [lainProducts, setLainProducts] = useState([])
    
     const year = new Date().getFullYear()
 
     useEffect(()=>{
-        const filteredTrendingProducts = products.filter(
+        const filteredMaterialProducts = products.filter(
             (item) => item.category === "material"
         );
-        const filteredBestSalesProducts = products.filter(
+        const filteredElektronikProducts = products.filter(
             (item) => item.category === "elektronik"
         );
-        const filteredMobileProducts = products.filter(
+        const filteredPerabotProducts = products.filter(
             (item) => item.category === "perabot rumah"
         );
-        const filteredWirelessProducts = products.filter(
+        const filteredPerkakasProducts = products.filter(
             (item) => item.category === "perkakas"
         );
-        const filteredPopularProducts = products.filter(
+        const filteredLainProducts = products.filter(
             (item) => item.category === "lain-lain"
         );
 
-        setTrendingProducts(filteredTrendingProducts);
-        setBestSalesProducts(filteredBestSalesProducts);
-        setMobileProducts(filteredMobileProducts);
-        setWirelessProducts(filteredWirelessProducts);
-        setPopularProducts(filteredPopularProducts);
+        setMaterialProducts(filteredMaterialProducts);
+        setElektronikProducts(filteredElektronikProducts);
+        setPerabotProducts(filteredPerabotProducts);
+        setPerkakasProducts(filteredPerkakasProducts);
+        setLainProducts(filteredLainProducts);
     }, []);
 
     return (
@@ -70,23 +70,23 @@ const Home = () => {
                 </Container>
             </section>
             <Services />
-            <section className="trending__products">
+            <section className="material__products">
                 <Container>
                     <Row>
                         <Col lg='12' className='text-center'>
-                            <h2 className='section__title'>Trending Product</h2>
+                            <h2 className='section__title'>Bahan Material</h2>
                         </Col>
-                        <Productlist data={trendingProducts} />
+                        <Productlist data={materialProducts} />
                     </Row>
                 </Container>
             </section>
-            <section className='best__sales'>
+            <section className='elektronik__sales'>
                 <Container>
                 <Row>
                         <Col lg='12' className='text-center'>
-                            <h2 className='section__title'>Produk Terlaris</h2>
+                            <h2 className='section__title'>Elektronik</h2>
                         </Col>
-                        <Productlist data={bestSalesProducts} />
+                        <Productlist data={elektronikProducts} />
                     </Row>
                 </Container>
             </section>
@@ -112,28 +112,30 @@ const Home = () => {
                 </Container>
             </section>
 
-            <section className="new__arrivals">
+            <section className="perabot__perkakas">
                 <Container>
                     <Row>
                     <Col lg='12' className='text-center mb-5'>
-                            <h2 className='section__title'>Produk Terbaru</h2>
+                            <h2 className='section__title'>Perabot Rumah dan Perkakas</h2>
                         </Col>
-                        <Productlist data={mobileProducts} />
-                        <Productlist data={wirelessProducts}/>
+                        <Productlist data={perabotProducts} />
+                        <Productlist data={perkakasProducts}/>
                     </Row>
                 </Container>
             </section>
 
-            <section className="popular__category">
+            <section className="lain">
             <Container>
                     <Row>
                     <Col lg='12' className='text-center mb-5'>
-                            <h2 className='section__title'>Terlaris di Kategori</h2>
+                            <h2 className='section__title'>Lain-lain</h2>
                         </Col>
-                        <Productlist data={popularProducts} />
+                        <Productlist data={lainProducts} />
                     </Row>
                 </Container>
             </section>
+
+            
         </Helmet>
     )
 }

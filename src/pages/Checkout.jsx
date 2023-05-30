@@ -4,6 +4,7 @@ import Helmet from '../components/Helmet/Helmet'
 import CommonSection from '../components/UI/CommonSection'
 import '../styles/checkout.css'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
 
@@ -63,7 +64,7 @@ const Checkout = () => {
                                 <h4>
                                     Total : <span>Rp {totalAmount}</span>
                                 </h4>
-                                <button className='buy__btn auth__btn w-100'>Buat Pesanan</button>
+                                <button className='buy__btn auth__btn w-100'><Link to='/InvoicePage'>Buat Pesanan</Link></button>
                             </div>
                         </Col>
                     </Row>
