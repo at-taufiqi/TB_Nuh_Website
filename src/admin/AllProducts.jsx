@@ -5,6 +5,9 @@ import { doc, deleteDoc } from "firebase/firestore";
 import useGetData from "../custom-hooks/useGetData";
 import { toast } from "react-toastify";
 
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 const AllProducts = () => {
   const { data: productsData, loading } = useGetData("products");
 
@@ -16,6 +19,9 @@ const AllProducts = () => {
   return (
     <section>
       <Container>
+        <motion.button whileTap={{ scale: 1.2 }} className="buy__btn">
+          <Link to="/dashboard/add-product">ADD PRODUCT</Link>
+        </motion.button>
         <Row>
           <Col lg="12">
             <table className="table">
@@ -37,7 +43,7 @@ const AllProducts = () => {
                       <td>
                         <img src={item.imgUrl} alt="" />
                       </td>
-                      <td>{item.title}</td>
+                      <td>{item.productName}</td>
                       <td>{item.category}</td>
                       <td>Rp{item.price}</td>
                       <td>
