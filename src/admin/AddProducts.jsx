@@ -11,9 +11,9 @@ const AddProducts = () => {
   const [enterTitle, setEnterTitle] = useState("");
   const [enterShortDesc, setEnterShortDesc] = useState("");
   const [enterDescription, setEnterDescription] = useState("");
-  const [enterCaegory, setEnterCategory] = useState("");
+  const [enterCategory, setEnterCategory] = useState("");
   const [enterPrice, setEnterPrice] = useState("");
-  const [enterProductImg, setEnterProdutcImg] = useState(null);
+  const [enterProductImg, setEnterProductImg] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const AddProducts = () => {
               productName: enterTitle,
               shortDesc: enterShortDesc,
               description: enterDescription,
-              category: enterCaegory,
+              category: enterCategory,
               price: enterPrice,
               imgUrl: downloadURL,
             });
@@ -118,7 +118,7 @@ const AddProducts = () => {
                       <span>Category</span>
                       <select
                         className="w-100 p-2"
-                        value={enterCaegory}
+                        value={enterCategory}
                         onChange={(e) => setEnterCategory(e.target.value)}
                       >
                         <option>Select category</option>
@@ -136,7 +136,7 @@ const AddProducts = () => {
                       <span>Product Image</span>
                       <input
                         type="file"
-                        onchange={(e) => setEnterProdutcImg(e.target.files[0])}
+                        onChange={(e) => setEnterProductImg(e.target.files[0])}
                         required
                       />
                     </FormGroup>
