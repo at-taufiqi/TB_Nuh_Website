@@ -7,22 +7,23 @@ import useGetData from "../custom-hooks/useGetData";
 const Dashboard = () => {
   const { data: products } = useGetData("products");
   const { data: users } = useGetData("users");
+  const { data: orders } = useGetData("orders");
 
   return (
     <>
       <section>
         <Container>
           <Row>
-            <Col className="lg-3">
+            {/* <Col className="lg-3">
               <div className="revenue__box">
                 <h5>Total Sales</h5>
                 <span>Rp5000</span>
               </div>
-            </Col>
+            </Col> */}
             <Col className="lg-3">
               <div className="order__box">
                 <h5>Orders</h5>
-                <span>5</span>
+                <span>{orders.length}</span>
               </div>
             </Col>
             <Col className="lg-3">

@@ -1,77 +1,171 @@
-import React from 'react'
-import { Container, Row, Col, Form, FormGroup } from 'reactstrap'
-import Helmet from '../components/Helmet/Helmet'
-import CommonSection from '../components/UI/CommonSection'
-import '../styles/checkout.css'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Container, Row, Col, Form, FormGroup } from "reactstrap";
+import Helmet from "../components/Helmet/Helmet";
+import CommonSection from "../components/UI/CommonSection";
+import "../styles/checkout.css";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-
+import { toast } from "react-toastify";
+import { db } from "../firebase.config";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const totalQty = useSelector((state) => state.cart.totalQuantity);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
 
-    const totalQty = useSelector(state=>state.cart.totalQuantity)
-    const totalAmount = useSelector(state=>state.cart.totalAmount)
+  const [enterCustomer, setEnterCustomer] = useState("");
+  const [enterPhone, setEnterPhone] = useState("");
+  const [enterAddress, setEnterAddress] = useState("");
+  const [enterCity, setEnterCity] = useState("");
+  const [enterPostCode, setEnterPostCode] = useState("");
+  const [enterCountry, setEnterCountry] = useState("");
+  const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
 
-    return (
-        <Helmet title='Checkout'>
-            <CommonSection title='Checkout' />
-            <section>
-                <Container>
-                    <Row>
-                        <Col lg="8">
-                            <h6 className='mb-4 fw-bold'>Informasi Pesanan</h6>
-                            <Form className='billing__form'>
-                                <FormGroup className="form__group">
-                                    <input type="text" placeholder='Nama Pemesan' />
-                                </FormGroup>
+  const addOrder = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-                                <FormGroup className="form__group">
-                                    <input type="number" placeholder='Nomor Telepon' />
-                                </FormGroup>
+    //======add product to database=====
+    try {
+      const docRef = await collection(db, "orders");
 
-                                <FormGroup className="form__group">
-                                    <input type="text" placeholder='Alamat lengkap' />
-                                </FormGroup>
+      await addDoc(docRef, {
+        customer: enterCustomer,
+        phone: enterPhone,
+        address: enterAddress,
+        city: enterCity,
+        postCode: enterPostCode,
+        country: enterCountry,
+        totalQty,
+        totalAmount,
+        time: Timestamp.fromDate(new Date()),
+      });
 
-                                <FormGroup className="form__group">
-                                    <input type="text" placeholder='Kota/Kabupaten' />
-                                </FormGroup>
+      setLoading(false);
+      toast.success("order succesfully added!");
+      navigate("/pages/Invoice");
+    } catch (err) {
+      setLoading(false);
+      toast.error("order not added!");
+    }
+  };
 
-                                <FormGroup className="form__group">
-                                    <input type="text" placeholder='Kode Pos' />
-                                </FormGroup>
+  return (
+    <Helmet title="Checkout">
+      <CommonSection title="Checkout" />
+      <section>
+        <Container>
+          <Row>
+            <Col lg="8">
+              {loading ? (
+                <h4 className="py-5">Loading.......</h4>
+              ) : (
+                <>
+                  <h6 className="mb-4 fw-bold">Informasi Pesanan</h6>
+                  <Form onSubmit={addOrder}>
+                    <FormGroup className="form__group">
+                      <input
+                        type="text"
+                        placeholder="Nama Pemesan"
+                        value={enterCustomer}
+                        onChange={(e) => setEnterCustomer(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
 
-                                <FormGroup className="form__group">
-                                    <input type="text" placeholder='Negara' />
-                                </FormGroup>
-                            </Form>
-                        </Col>
+                    <FormGroup className="form__group">
+                      <input
+                        type="number"
+                        placeholder="Nomor Telepon"
+                        value={enterPhone}
+                        onChange={(e) => setEnterPhone(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
 
-                        <Col lg='4'>
-                            <div className='checkout__cart'>
-                                <h6>Total Pesanan : <span>{totalQty} barang </span></h6>
-                                <h6>Subtotal: <span>Rp {totalAmount}</span></h6>
-                                <h6> 
-                                    <span>
-                                        Ongkos Kirim : <br />
-                                        Gratis Ongkir
-                                    </span>
-                                    <span>Rp 0</span> 
-                                </h6>
+                    <FormGroup className="form__group">
+                      <input
+                        type="text"
+                        placeholder="Alamat lengkap"
+                        value={enterAddress}
+                        onChange={(e) => setEnterAddress(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
 
-                                <h4>
-                                    Total : <span>Rp {totalAmount}</span>
-                                </h4>
-                                <button className='buy__btn auth__btn w-100'><Link to='/InvoicePage'>Buat Pesanan</Link></button>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-        </Helmet>
-    )
-}
+                    <FormGroup className="form__group">
+                      <input
+                        type="text"
+                        placeholder="Kota/Kabupaten"
+                        value={enterCity}
+                        onChange={(e) => setEnterCity(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
 
-export default Checkout
+                    <FormGroup className="form__group">
+                      <input
+                        type="text"
+                        placeholder="Kode Pos"
+                        value={enterPostCode}
+                        onChange={(e) => setEnterPostCode(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
+
+                    <FormGroup className="form__group">
+                      <input
+                        type="text"
+                        placeholder="Negara"
+                        value={enterCountry}
+                        onChange={(e) => setEnterCountry(e.target.value)}
+                        required
+                      />
+                    </FormGroup>
+
+                    <button
+                      className="buy__btn"
+                      type="submit"
+                      onClick="window.location.reload()"
+                    >
+                      Buat Pesanan
+                      <Link to="invoice"></Link>
+                    </button>
+                  </Form>
+                </>
+              )}
+            </Col>
+
+            <Col lg="4">
+              <div className="checkout__cart">
+                <h6>
+                  Total Pesanan : <span>{totalQty} barang </span>
+                </h6>
+                <h6>
+                  Subtotal: <span>Rp {totalAmount}</span>
+                </h6>
+                <h6>
+                  <span>
+                    Ongkos Kirim : <br />
+                    Gratis Ongkir
+                  </span>
+                  <span>Rp 0</span>
+                </h6>
+
+                <h4>
+                  Total : <span>Rp {totalAmount}</span>
+                </h4>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    </Helmet>
+  );
+};
+
+export default Checkout;
