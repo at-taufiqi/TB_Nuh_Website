@@ -24,10 +24,10 @@ const Routers = () => {
       <Route path="shop" element={<Shop />} />
       <Route path="shop/:id" element={<ProductDetails />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="invoice" element={<Invoice />} />
 
       <Route path="/*" element={<ProtectedRoute />}>
         <Route path="checkout" element={<Checkout />} />
-        <Route path="invoice" element={<Invoice />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="dashboard/all-products" element={<AllProducts />} />
         <Route path="dashboard/add-product" element={<AddProducts />} />

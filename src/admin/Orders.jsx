@@ -31,6 +31,7 @@ const Orders = () => {
                   <th>Kota</th>
                   <th>Kode Post</th>
                   <th>Negara</th>
+                  {/* <th>Nama Barang</th> */}
                   <th>Total Barang</th>
                   <th>Total Bayar</th>
                   {/* <th>Waktu Pesan</th> */}
@@ -50,6 +51,7 @@ const Orders = () => {
                       <td>{order.city}</td>
                       <td>{order.postCode}</td>
                       <td>{order.country}</td>
+                      {/* <td>{order.cartItems.productName}</td> */}
                       <td>{order.totalQty}</td>
                       <td>{order.totalAmount}</td>
                       {/* <td>{order.time}</td> */}

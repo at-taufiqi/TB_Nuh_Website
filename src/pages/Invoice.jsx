@@ -4,13 +4,13 @@ import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import useGetData from "./../custom-hooks/useGetData";
+// import { currentOrderSelector } from "../redux/slices/cartSlice";
 
 const Invoice = () => {
   const totalQty = useSelector((state) => state.cart.totalQuantity);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
-
-  // const { data: OrdersData } = useGetData("orders");
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  // const order = useSelector(currentOrderSelector);
 
   return (
     <Helmet title="Invoice">
@@ -24,12 +24,12 @@ const Invoice = () => {
               </h1>
               <span>
                 {/* <h5 className="mb-4 fs-4">Ringkasan pesanan</h5>
-                <h6>Nama Pemesan : {OrdersData.customer}</h6> <br />
-                <h6>Nomor Telepon : {OrdersData.phone}</h6> <br />
-                <h6>Alamat Pengiriman : {OrdersData.address}</h6> <br />
-                <h6>Kota/Kabupaten : {OrdersData.city}</h6> <br />
-                <h6>Kode Pos : {OrdersData.postCode}</h6> <br />
-                <h6>Negara : {OrdersData.country}</h6> */}
+                <h6>Nama Pemesan : {order.customer}</h6> <br />
+                <h6>Nomor Telepon : {order.phone}</h6> <br />
+                <h6>Alamat Pengiriman : {order.address}</h6> <br />
+                <h6>Kota/Kabupaten : {order.city}</h6> <br />
+                <h6>Kode Pos : {order.postCode}</h6> <br />
+                <h6>Negara : {order.country}</h6> */}
                 <p className="mt-4">
                   {" "}
                   * Pesanan akan kami proses paling lama 2x24 jam setelah
@@ -48,9 +48,13 @@ const Invoice = () => {
             </Col>
 
             <Col lg="4">
-              {" "}
               <br />
               <div className="checkout__cart">
+                {cartItems.map((item) => (
+                  <h6 key={item.id}>
+                    Nama Barang: <span>{item.productName}</span>
+                  </h6>
+                ))}
                 <h6>
                   Total Pesanan Anda : <span>{totalQty} barang </span>
                 </h6>

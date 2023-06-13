@@ -4,7 +4,6 @@ import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import "../styles/checkout.css";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import { db } from "../firebase.config";
@@ -14,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Checkout = () => {
   const totalQty = useSelector((state) => state.cart.totalQuantity);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const [enterCustomer, setEnterCustomer] = useState("");
   const [enterPhone, setEnterPhone] = useState("");
@@ -40,6 +40,7 @@ const Checkout = () => {
         city: enterCity,
         postCode: enterPostCode,
         country: enterCountry,
+        cartItems,
         totalQty,
         totalAmount,
         time: Timestamp.fromDate(new Date()),
@@ -47,7 +48,7 @@ const Checkout = () => {
 
       setLoading(false);
       toast.success("order succesfully added!");
-      navigate("/pages/Invoice");
+      navigate("/invoice");
     } catch (err) {
       setLoading(false);
       toast.error("order not added!");
@@ -130,10 +131,9 @@ const Checkout = () => {
                     <button
                       className="buy__btn"
                       type="submit"
-                      onClick="window.location.reload()"
+                      onClick={addOrder}
                     >
                       Buat Pesanan
-                      <Link to="invoice"></Link>
                     </button>
                   </Form>
                 </>
@@ -142,12 +142,20 @@ const Checkout = () => {
 
             <Col lg="4">
               <div className="checkout__cart">
+                {cartItems.map((item) => (
+                  <h6 key={item.id}>
+                    Nama Barang: <span>{item.productName}</span>
+                  </h6>
+                ))}
+
                 <h6>
                   Total Pesanan : <span>{totalQty} barang </span>
                 </h6>
+
                 <h6>
                   Subtotal: <span>Rp {totalAmount}</span>
                 </h6>
+
                 <h6>
                   <span>
                     Ongkos Kirim : <br />
