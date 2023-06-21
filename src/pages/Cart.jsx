@@ -1,96 +1,101 @@
-import React from 'react'
-import '../styles/cart.css'
-import Helmet from '../components/Helmet/Helmet'
-import CommonSection from '../components/UI/CommonSection'
-import { Container, Row, Col } from 'reactstrap'
-import { motion } from 'framer-motion'
-import { cartActions } from '../redux/slices/cartSlice'
-import { useSelector,useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React from "react";
+import "../styles/cart.css";
+import Helmet from "../components/Helmet/Helmet";
+import CommonSection from "../components/UI/CommonSection";
+import { Container, Row, Col } from "reactstrap";
+import { motion } from "framer-motion";
+import { cartActions } from "../redux/slices/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
 
-    const cartItems = useSelector((state) => state.cart.cartItems)
-    const totalAmount = useSelector((state) => state.cart.totalAmount)
+  return (
+    <Helmet title="Cart">
+      <CommonSection title="Keranjang Belanja" />
+      <section>
+        <Container>
+          <Row>
+            <Col lg="9">
+              {cartItems.length === 0 ? (
+                <h2 className="fs-4 text-center">
+                  Tidak ada barang di keranjang
+                </h2>
+              ) : (
+                <table className="table bordered">
+                  <thead>
+                    <tr>
+                      <th>Gambar</th>
+                      <th>Nama barang</th>
+                      <th>Harga</th>
+                      <th>Jumlah</th>
+                      <th>Hapus</th>
+                    </tr>
+                  </thead>
 
-    return (
-        <Helmet title="Cart">
-            <CommonSection title="Keranjang Belanja" />
-            <section>
-                <Container>
-                    <Row>
-                        <Col lg='9'>
-                            {
-                                cartItems.length===0 ? (
-                                <h2 className='fs-4 text-center'>Tidak ada barang di keranjang</h2> 
-                                ):(
-                                    <table className="table bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Gambar</th>
-                                        <th>Nama barang</th>
-                                        <th>Harga</th>
-                                        <th>Jumlah</th>
-                                        <th>Hapus</th>
-                                    </tr>
-                                </thead>
+                  <tbody>
+                    {cartItems.map((item, index) => (
+                      <Tr item={item} key={index} />
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </Col>
 
-                                <tbody>
-                                    {
-                                        cartItems.map((item,index)=>(
-                                            <Tr item={item} key={index} />                                        
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
-                                )
-                            }
+            <Col lg="3">
+              <div>
+                <h6 className="d-flex align-items-center justify-content-between">
+                  Subtotal
+                  <span className="fs-4 fw-bold">Rp {totalAmount}</span>
+                </h6>
+              </div>
 
-                        </Col>
+              <p className="fs-6 mt-2">
+                pajak dan ongkos kirim akan diakumulasi ketika Checkout
+              </p>
 
-                        <Col lg='3'>
-                            <div>
-                                <h6 className='d-flex align-items-center justify-content-between'>Subtotal
-                                <span className='fs-4 fw-bold'>Rp {totalAmount}</span>
-                                </h6>
-                            </div>
+              <div>
+                <button className="buy__btn w-100">
+                  <Link to="/checkout">Checkout</Link>
+                </button>
+                <button className="buy__btn w-100 mt-3">
+                  <Link to="/home">Lanjut Belanja</Link>
+                </button>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    </Helmet>
+  );
+};
 
-                            <p className='fs-6 mt-2'>pajak dan ongkos kirim akan diakumulasi ketika Checkout</p>
-                            
-                            <div>
-                                <button className='buy__btn w-100'><Link to='/checkout'>Checkout</Link></button>
-                                <button className='buy__btn w-100 mt-3'><Link to='/shop'>Lanjut Belanja</Link></button>
-                            </div>
+const Tr = ({ item }) => {
+  const dispatch = useDispatch();
 
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-        </Helmet>
-    )
-}
+  const deleteProduct = () => {
+    dispatch(cartActions.deleteItem(item.id));
+  };
 
-const Tr = ({item})=>{
+  return (
+    <tr>
+      <td>
+        <img src={item.imgUrl} alt="" />
+      </td>
+      <td>{item.productName}</td>
+      <td>Rp {item.price}</td>
+      <td>{item.quantity}pcs</td>
+      <td>
+        <motion.i
+          whileTap={{ scale: 1.2 }}
+          onClick={deleteProduct}
+          class="ri-delete-bin-line"
+        ></motion.i>
+      </td>
+    </tr>
+  );
+};
 
-    const dispatch = useDispatch()
-
-    const deleteProduct = ()=>{
-        dispatch(cartActions.deleteItem(item.id))
-    }
-
-    return (
-        <tr >
-            <td><img src={item.imgUrl} alt="" /></td>
-            <td>{item.productName}</td>
-            <td>Rp {item.price}</td>
-            <td>{item.quantity}pcs</td>
-            <td><motion.i 
-                whileTap={{ scale: 1.2 }}
-                onClick={deleteProduct}
-                class="ri-delete-bin-line">
-                </motion.i></td>
-        </tr>
-    )
-}
-
-export default Cart
+export default Cart;

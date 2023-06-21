@@ -17,10 +17,10 @@ const nav__links = [
     path: "home",
     display: "Home",
   },
-  {
-    path: "shop",
-    display: "Shop",
-  },
+  // {
+  //   path: "shop",
+  //   display: "Shop",
+  // },
   {
     path: "cart",
     display: "Cart",
@@ -106,10 +106,10 @@ const Header = () => {
             </div>
 
             <div className="nav__icons">
-              <span className="fav__icon">
+              {/* <span className="fav__icon">
                 <i class="ri-heart-line"></i>
                 <span className="badge">1</span>
-              </span>
+              </span> */}
               <span className="cart__icon" onClick={navigateToCart}>
                 <i class="ri-shopping-cart-fill"></i>
                 <span className="badge">{totalQuantity}</span>
