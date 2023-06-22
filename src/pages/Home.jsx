@@ -4,8 +4,8 @@ import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col } from "reactstrap";
 import heroImg from "../assets/images/hero-img.png";
 import "../styles/home.css";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+// import { Link } from "react-router-dom";
+// import { motion } from "framer-motion";
 import Services from "../services/Services";
 import Productlist from "../components/UI/Productlist";
 
@@ -66,9 +66,9 @@ const Home = () => {
                   bangunan dan peralatan konstruksi berkualitas tinggi untuk
                   kebutuhan renovasi dan pembangunan rumah Anda.
                 </p>
-                <motion.button whileTap={{ scale: 1.2 }} className="buy__btn">
+                {/* <motion.button whileTap={{ scale: 1.2 }} className="buy__btn">
                   <Link to="/shop">BELANJA SEKARANG</Link>
-                </motion.button>
+                </motion.button> */}
               </div>
             </Col>
             <Col lg="6" md="6">
@@ -123,12 +123,12 @@ const Home = () => {
               </div>
               <Clock />
 
-              <motion.button
+              {/* <motion.button
                 whileTap={{ scale: 1.2 }}
                 className="buy__btn store__btn"
               >
                 <Link to="/shop">Belanja Sekarang</Link>
-              </motion.button>
+              </motion.button> */}
             </Col>
             <Col lg="6" md="12" className="text-end counter__img">
               <img src={counterImg} alt="" />

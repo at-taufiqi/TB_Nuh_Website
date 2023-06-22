@@ -30,7 +30,7 @@ const AdminNav = () => {
 
   return (
     <>
-      <header className="admin__header">
+      {/* <header className="admin__header">
         <div className="admin__nav-top">
           <Container>
             <div className="admin__nav-wrapper-top">
@@ -56,7 +56,7 @@ const AdminNav = () => {
             </div>
           </Container>
         </div>
-      </header>
+      </header> */}
 
       <section className="admin__menu p-0">
         <Container>
