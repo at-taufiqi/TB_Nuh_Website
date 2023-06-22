@@ -104,7 +104,7 @@ const ProductDetails = () => {
               <div className="product__details">
                 <h2>{productName}</h2>
                 <div className="product__rating d-flex align-items-center gap-5 mb-3">
-                  <div>
+                  {/* <div>
                     <span>
                       <i class="ri-star-s-fill"></i>
                     </span>
@@ -120,7 +120,7 @@ const ProductDetails = () => {
                     <span>
                       <i class="ri-star-half-s-line"></i>
                     </span>
-                  </div>
+                  </div> */}
 
                   <p>{/* (<span>{avgRating}</span> ratings) */}</p>
                 </div>
@@ -155,12 +155,12 @@ const ProductDetails = () => {
                 >
                   Description
                 </h6>
-                <h6
+                {/* <h6
                   className={`${tab === "rev" ? "active__tab" : ""}`}
                   onClick={() => setTab("rev")}
                 >
                   Reviews
-                </h6>
+                </h6> */}
               </div>
 
               {tab === "desc" ? (
